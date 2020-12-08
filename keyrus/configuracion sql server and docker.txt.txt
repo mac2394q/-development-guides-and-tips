@@ -1,0 +1,39 @@
+#create and run the sql server container from the microsoft's official image
+docker run -d --name sql_server_confama_master -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Comfama2019' -p 1433:1433 microsoft/mssql-server-linux
+docker run -d --name comfama -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Comfama2019' -p 1433:1433 microsoft/mssql-server-linux
+
+#create the backup folder inside the container
+docker exec -it sql_server_confama_master bash -c "mkdir /var/opt/mssql/backup"
+
+#move the backup file inside the backup container folder
+#Replace the first argument of "cp" command with your backup file path 
+docker cp /home/nestor/Downloads/comfama_db_20201104 sql_server_confama_master:/var/opt/mssql/backup
+docker cp C:\comfama_db_20201130.bak comfama:/var/opt/mssql/backup
+
+# Show the mdf files inside of backup file, the files are necessary for restore the database
+# REPLACE "comfama_db_20201104" for the name of your backup file
+
+sudo docker exec -it sql_server_confama_master /opt/mssql-tools/bin/sqlcmd -S localhost \
+-U SA -P 'Comfama2019' \
+-Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backup/comfama_db_20201104"' 
+
+
+# Replace comfama_db_20201104 with the name of the backup file of the database to restore
+# Per default, the mdf files are the same that appear into the output of the last command
+# REPLACE "comfama_db_20201104" for the name of your backup file
+
+sudo docker exec -it sql_server_confama_master /opt/mssql-tools/bin/sqlcmd \
+-S localhost -U SA -P 'Comfama2019' \
+-Q 'RESTORE DATABASE comfama_db FROM DISK = "/var/opt/mssql/backup/comfama_db_20201104" WITH MOVE "comfama" TO "/var/opt/mssql/data/comfama.mdf", MOVE "comfama_log" TO "/var/opt/mssql/data/comfama_log.ldf"'
+
+
+sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P 'Comfama2019' \
+   -Q "BACKUP DATABASE comfama_db TO DISK = N'/var/opt/mssql/backup/comfama_db_20201130.bak' WITH NOFORMAT, NOINIT, NAME = 'comfama_db-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
+
+sent December 1 at 1:23 PM
+sudo docker exec -it sql_server_confama_master --volume "$(PWD):/opt/mssql-tools/bin/" sqlcmd -S localhost \
+-U SA -P 'Comfama2019' \
+-Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backup/comfama_db_20201104"'
+Nestor Villar sent December 1 at 1:23 PM
+docker exec -it sql_server_confama_master --volume ${PWD}:/opt/mssql-tools/bin/ sqlcmd -S localhost -U SA -P 'Comfama2019' -Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backup/comfama_db_20201130.bak"'

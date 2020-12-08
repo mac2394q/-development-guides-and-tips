@@ -1,0 +1,30 @@
+ant initialize 
+
+
+ant clean all
+http://localhost:9002/hac
+Nestor Villar sent Today at 9:43 AM
+https://localhost:9002/backoffice/
+
+Buenas tardes Miguel, a continuación te envío la configuración para el ambiente de desarrollo de Comfama:
+
+1. Licencia de Hybris:
+1. Define the SystemId in local.properties file
+    # System ID
+    license.sap.sapsystem=DV1
+2. Run the "license.bat -temp CPS_MSS" file from the command line with CPS_SQL as a parameter. If you are using a different database than default HSQL database, you would need to change the parameter as mentioned below.
+                Database                                            Value
+                HSQL DB(default)            CPS_SQL
+                SAP Hana                                            CPS_HDB
+                MS SQL Server                  CPS_MSS
+                Oracle                                                  CPS_ORA
+                MySQL                                                 CPS_MYS
+
+2.Repositorio: la url es esta https://bitbucket.keyrus.info/projects/COM/repos/comfama-commerce/browse y el branch de cual debes partir es b2c-spritn1
+
+3. Así configuro los enlaces simbólicos en Windows
+
+MKLINK /J C:\comfama\hybris\bin\custom C:\Development\comfama-commerce\bin\custom
+MKLINK /J C:\comfama\hybris\config C:\Development\comfama-commerce\build\config-dev
+
+Siendo “C:\comfama” donde está instalado hybris y “C:\Development\comfama-commerce\” donde descargué el repositorio de bitbucket

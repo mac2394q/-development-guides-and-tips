@@ -1,0 +1,8 @@
+server type: database Engine
+
+Server name: [Host],[port] 127.0.0.1,1433
+
+Authentication: SQL Servre Authentication
+
+login sa
+password Comfama2019
