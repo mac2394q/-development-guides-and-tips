@@ -1,0 +1,1 @@
+docker run -d -p 2306:3306 --name db_fts -e MYSQL_ROOT_PASSWORD=R00tmysql mysql

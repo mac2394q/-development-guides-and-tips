@@ -1,0 +1,2 @@
+docker run -p 8023:80 -d nginx 
+docker run -p -d   [portLocal]:[portDocker] [image]

@@ -1,0 +1,13 @@
+npm install -g @angular/cli
+
+ng new my-app
+
+ng serve --open
+
+ng generate
+
+http://localhost:4200/
+
+
+
+https://akveo.github.io/ngx-admin/

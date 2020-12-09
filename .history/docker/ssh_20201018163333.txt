@@ -1,0 +1,44 @@
+Method 3: Use SSH to Connect to a Docker Container
+You can connect to a Docker container using SSH (Secure Shell). Normally, SSH is used to connect remotely over a network to a server. The technology works the same when connecting to a virtual Docker container on your system.
+
+Important: We do not recommend this method, since it inflates the image beyond the normal scope. You will need to have an image with SSL already configured for this to work.
+
+Step 1: Enable SSH on System
+Start by installing and enabling the SSH service:
+
+Enable SSH on Ubuntu 18.04:
+
+sudo apt-get install ssh
+
+sudo systemctl ssh start
+
+sudo systemctl ssh enable
+
+service ssh status
+Enable SSH on CentOS 7:
+
+yum –y install openssh-server openssh-clients
+
+service sshd start
+
+service sshd enable
+
+service sshd status
+Step 2: Get IP Address of Container
+Get the container’s IP address by using the docker inspect command and filtering out the results:
+
+sudo docker inspect -f "{{ .NetworkSettings.IPAddress }}" Container_Name
+docker inspect command to get the ip addres of a docker container
+The system will display the IP address as seen in the image above.
+
+Note: The targeted docker container must be running to be able to get its IP address. If you need to start an existing docker container, run sudo docker start container_name.
+
+Step 3: SSH Into Docker Container
+Ping the IP address to make sure it’s available:
+
+ping –c 3 172.17.0.2
+ping a docker container to verify ip address
+Use the SSH tool to connect to the image:
+
+ssh root@172.17.0.2
+The system should prompt for a password of the root user for that container. If it says Connection refused, likely the container is not provisioned for SSH. If the prompt changes, you are now connected via SSH, and can run commands in the container.

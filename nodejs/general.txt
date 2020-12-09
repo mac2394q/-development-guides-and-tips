@@ -1,0 +1,11 @@
+//history 
+npm init -y 
+npm update 
+npm install --save-dev nodemon
+npm install express socket.io
+
+npm install express socket.io && npm install --save-dev nodemon.
+npm start
+npm run start 
+
+curl -X GET http://localhost:3000/

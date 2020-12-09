@@ -1,0 +1,4 @@
+problemas de integracion de sweetAlert
+
+para evitar errores de la variable swal
+realizar : node-modules/sweet-alert/sweetalert.d.ts borrar la variable const swal: SweetAlert;

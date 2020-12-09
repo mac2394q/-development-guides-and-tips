@@ -1,0 +1,2 @@
+https://ionicframework.com/docs/developing/tips readme
+https://ionicthemes.com/tutorials/about/ionic-framework-development-glossary

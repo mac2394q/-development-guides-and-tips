@@ -1,0 +1,5 @@
+
+
+-  docker –version
+This command is used to get the currently installed version of docker
+

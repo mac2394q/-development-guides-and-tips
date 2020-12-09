@@ -1,0 +1,5 @@
+docker rm $( docker ps -aq )
+
+docker stop $( docker ps -aq )
+
+docker run  -p 8023:80 2223:22 -d nginx

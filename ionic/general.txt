@@ -1,0 +1,96 @@
+IONIC:
+requeriment's:
+Nodejs
+Npm
+Git
+
+
+Development server running!
+Local: http://localhost:8100
+
+> Getting Started:
+
+-ionic version
+ionic -v
+
+-information
+ionic info 
+
+
+-install
+npm install -g @ionic/cli
+
+-Uninstall
+npm uninstall -g ionic
+
+-Ionic + Angular
+npm install @ionic/angular@latest --save
+
+-existing project
+ng add @ionic/angular
+
+-Install Ionic Tooling
+npm install -g @ionic/cli native-run cordova-res
+
+
+- pwa
+npm install @ionic/pwa-elements
+
+-Run the App
+ionic  serve
+
+npm install -g  @ionic/lab
+ionic serve --lab
+
+-ej:
+ionic start [nombre_projecto] [started template tabs|sidemenu|blank|my-first-app|conference] --type=[angular|react] --capacitor
+
+ionic start appTest blank --type=angular --capacitor
+>Command:
+
+-capacitor:
+npm install @capacitor/core @capacitor/cli
+npx cap init 
+
+add platforms
+ -npx cap add android
+ -npx cap add ios
+ -npx cap add electron
+
+ open android studios
+ npx cap open android
+
+>generar componentes 
+ ionic generate page|component|service|module|class|directive|guard|pipe|interface|enum
+
+>compiling  app build
+ionic build
+ionic build --prod
+ionic build --watch
+
+>Errors:
+
+- Missing write access" error when using npm:
+sudo chown -R $USER /usr/local/lib/node_modules
+
+
+NPM tools
+update repository's
+npm update | upgrade
+
+erros dependency 
+npm audit fix - fix
+npm audit - details
+npm fund - details
+
+angular
+actualizar dependency
+ng update 
+
+>Cordova
+cordova -v
+ionic integrations enable cordova
+ionic cordova platform add android
+ionic cordova run android --prod
+
+"ng run app:ionic-cordova-build:production --platform=android"

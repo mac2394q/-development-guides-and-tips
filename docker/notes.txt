@@ -1,0 +1,7 @@
+docker rm $( docker ps -aq ) -f    --force
+
+docker stop $( docker ps -aq ) 
+
+docker run  -p 8023:80 2223:22 -d nginx
+docker run  -p 2380:80 -d httpd
+docker run -d -p 2306:3306 --name db_fts mysql
